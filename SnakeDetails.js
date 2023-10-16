@@ -1,6 +1,7 @@
 import {snake} from "./gameObjects.js";
+import {getInputDirection} from "./movingSnake.js";
 
-export let draw = (board) => {
+export let drawSnake = (board) => {
     board.innerHTML = ''
     createSnake(board)
 }
@@ -15,7 +16,10 @@ export let createSnake = (gameBoard) => {
     })
 }
 export let snakeMove = () => {
+    const movingDirection = getInputDirection()
     for (let i = snake.snakeBody.length - 2; i >= 0; i--) {
         snake.snakeBody[i + 1] = {...snake.snakeBody[i]};
     }
+    snake.snakeBody[0].x += movingDirection.x;
+    snake.snakeBody[0].y += movingDirection.y;
 }
