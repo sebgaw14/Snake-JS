@@ -1,5 +1,6 @@
 import {drawSnake, snakeMove} from "./SnakeDetails.js";
 import {snake} from "./gameObjects.js";
+import {drawFood} from "./foodDetails.js";
 
 let lastRenderTime = 0
 const board = document.querySelector('#game-board')
@@ -19,6 +20,7 @@ const initGame = (currentTime) => {
 let draw = () => {
     snakeMove()
     drawSnake(board)
+    drawFood(board)
 
 }
 

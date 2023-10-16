@@ -4,6 +4,6 @@ export let snake = {
 }
 
 export let food = {
-    x: 0,
-    y: 0
+    x: Math.floor(Math.random() * 21) + 1,
+    y: Math.floor(Math.random() * 21) + 1
 }
