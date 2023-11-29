@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Javascript Game</title>
     <meta charset="UTF-8">
-    <script type="module" src="./game.js"></script>
-    <link rel="stylesheet" href="./style.css">
-    <title>Snake</title>
+    <!-- http://proger.i-forge.net/The_smallest_transparent_pixel/ -->
+    <link rel="icon" href="data:image/gif;base64,R0lGODlhAQABAAAAACwAAAAAAQABAAA=">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="game.js" defer type="module"></script>
 </head>
 <body>
     <div id="game-board"></div>
+    <div id="container">
+
+        <div id="start-menu">
+            <form id="form">
+                <input type="radio" id="level-easy" name="level">
+                <label for="level-easy">Easy</label><br/>
+                <input type="radio" id="level-medium" name="level">
+                <label for="level-medium">Medium</label><br/>
+                <input type="radio" id="level-hard" name="level">
+                <label for="level-hard">Hard</label><br/>
+                <input type="submit" id="submit" value="graj">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
