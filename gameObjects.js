@@ -1,9 +1,18 @@
+import {GRID_SIZE} from "./grid.js";
+
 export let snake = {
-    speed: 1,
-    snakeBody: [{x: 11, y: 11}]
+    speed: 5,
+    snakeBody: [{x: 11, y: 11}],
+    accelerate() {
+        this.speed += 0.5;
+    }
 }
 
 export let food = {
-    x: Math.floor(Math.random() * 21) + 1,
-    y: Math.floor(Math.random() * 21) + 1
+    x: Math.floor(Math.random() * GRID_SIZE) + 1,
+    y: Math.floor(Math.random() * GRID_SIZE) + 1,
+    points: 10,
+    boostPoints() {
+        this.points *= 2;
+    }
 }

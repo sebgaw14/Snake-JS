@@ -1,31 +1,53 @@
-import {drawSnake, snakeMove} from "./SnakeDetails.js";
 import {snake} from "./gameObjects.js";
-import {drawFood} from "./foodDetails.js";
+import {snakeMove, draw as drawSnake, getSnakeHead, snakeIntersection} from "./snakeDetails.js";
+import {draw as drawFood, update as updateFood} from "./foodDetails.js"
+import {outsideGrid} from "./grid.js";
 
-let lastRenderTime = 0
-const board = document.querySelector('#game-board')
+// window.requestAnimationFrame(initGame);
 
-const initGame = (currentTime) => {
-    window.requestAnimationFrame(initGame)
-    
-    const secondSinceLastRender = (currentTime - lastRenderTime) / 1000
-    if (secondSinceLastRender < 1 / snake.speed) return
-    
-    lastRenderTime = currentTime
+const board = document.getElementById('game-board');
 
-    updateSnake()
-    draw()
+let lastRenderTime = 0;
+let gameOver = false;
+
+function initGame(currentTime) {
+    if (gameOver){
+        if(confirm('you lost. press ok to start again')){
+            window.location = '/freestyle-javascript-game-javascript-sebgaw12/index.html?level=1';
+        }
+        return;
+    }
+    window.requestAnimationFrame(initGame);
+    const secondSinceLastRender = (currentTime - lastRenderTime) / 1000;
+    if (secondSinceLastRender < 1 / snake.speed) return;
+    lastRenderTime = currentTime;
+
+    update();
+    draw();
 }
 
 let draw = () => {
-    snakeMove()
-    drawSnake(board)
-    drawFood(board)
+    board.innerHTML = ' ';
+    drawSnake(board);
+    drawFood(board);
 
 }
 
-let updateSnake = () => {
-    snakeMove()
+let update = () => {
+    snakeMove();
+    updateFood();
+    checkDeath();
 }
 
-window.requestAnimationFrame(initGame)
+let checkDeath = () => {
+    gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
+}
+
+const btn = document.getElementById('submit');
+const startMenu = document.getElementById('start-menu');
+
+btn.addEventListener('click', (e) =>{
+    startMenu.setAttribute('style', 'display: none');
+    window.requestAnimationFrame(initGame);
+    e.preventDefault();
+})

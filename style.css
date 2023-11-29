@@ -16,6 +16,7 @@ body{
     grid-template-rows: repeat(21, 1fr);
     grid-template-columns: repeat(21, 1fr);
 }
+
 .snake{
     background-color: cornflowerblue;
     border: .25vmin solid black;
@@ -24,4 +25,10 @@ body{
 .food{
     background-color: yellow;
     border: .25vmin solid black;
+}
+
+form{
+    color: white;
+    display: block;
+    border: solid white;
 }
