@@ -1,19 +1,18 @@
 import {snake} from "./gameObjects.js";
-import {snakeMove, draw as drawSnake, getSnakeHead, snakeIntersection} from "./snakeDetails.js";
+import {draw as drawSnake, getSnakeHead, snakeIntersection, snakeMove} from "./snakeDetails.js";
 import {draw as drawFood, update as updateFood} from "./foodDetails.js"
-import {outsideGrid} from "./grid.js";
-
-// window.requestAnimationFrame(initGame);
+import {isSnakeOutsideGrid} from "./grid.js";
 
 const board = document.getElementById('game-board');
 
 let lastRenderTime = 0;
 let gameOver = false;
+const PATH = '/Snake-JS/index.html?level=1';
 
 function initGame(currentTime) {
-    if (gameOver){
-        if(confirm('you lost. press ok to start again')){
-            window.location = '/freestyle-javascript-game-javascript-sebgaw12/index.html?level=1';
+    if (gameOver) {
+        if (confirm('you lost. press ok to start again')) {
+            window.location = PATH;
         }
         return;
     }
@@ -24,6 +23,7 @@ function initGame(currentTime) {
 
     update();
     draw();
+
 }
 
 let draw = () => {
@@ -40,14 +40,34 @@ let update = () => {
 }
 
 let checkDeath = () => {
-    gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
+    gameOver = isSnakeOutsideGrid(getSnakeHead()) || snakeIntersection();
 }
 
 const btn = document.getElementById('submit');
-const startMenu = document.getElementById('start-menu');
 
-btn.addEventListener('click', (e) =>{
-    startMenu.setAttribute('style', 'display: none');
-    window.requestAnimationFrame(initGame);
+let selectLevel = () => {
+    let levelEasy = document.getElementById('level-easy').checked;
+    let levelMedium = document.getElementById('level-medium').checked;
+    let levelHard = document.getElementById('level-hard').checked;
+
+    if (levelEasy === true) {
+        snake.speed = 5;
+    } else if (levelMedium === true) {
+        snake.speed = 10;
+    } else if (levelHard === true) {
+        snake.speed = 25;
+    } else {
+        if (confirm('you need to choose level')) {
+            window.location = PATH;
+        }
+    }
+}
+
+btn.addEventListener('click', (e) => {
     e.preventDefault();
+    const form = document.getElementById('form');
+    form.setAttribute('style', 'display: none');
+    selectLevel();
+    window.requestAnimationFrame(initGame);
+
 })

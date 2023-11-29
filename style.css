@@ -1,4 +1,4 @@
-body{
+body {
     min-height: 100vh;
     width: 100vw;
     display: flex;
@@ -8,7 +8,7 @@ body{
     background-color: black;
 }
 
-#game-board{
+#game-board {
     background-color: greenyellow;
     width: 100vmin;
     height: 100vmin;
@@ -17,18 +17,37 @@ body{
     grid-template-columns: repeat(21, 1fr);
 }
 
-.snake{
+.snake {
     background-color: cornflowerblue;
     border: .25vmin solid black;
 }
 
-.food{
+.food {
     background-color: yellow;
     border: .25vmin solid black;
 }
 
-form{
+#form {
     color: white;
+    font-size: x-large;
     display: block;
     border: solid white;
+    justify-content: end;
+}
+
+#timer {
+    color: white;
+    font-family: "Baskerville Old Face", fantasy;
+    font-size: xx-large;
+    display: flex;
+    justify-content: center;
+}
+
+#container {
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }

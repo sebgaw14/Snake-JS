@@ -10,16 +10,19 @@
 </head>
 <body>
     <div id="game-board"></div>
-    <div id="start-menu" style="display: block">
-        <form id="form">
-            <input type="radio" id="level-easy" value="1">
-            <label for="level-easy">Easy</label><br/>
-            <input type="radio" id="level-medium" value="2">
-            <label for="level-medium">Medium</label><br/>
-            <input type="radio" id="level-hard" value="3">
-            <label for="level-hard">Hard</label><br/>
-            <input type="submit" id="submit" value="graj">
-        </form>
+    <div id="container">
+
+        <div id="start-menu">
+            <form id="form">
+                <input type="radio" id="level-easy" name="level">
+                <label for="level-easy">Easy</label><br/>
+                <input type="radio" id="level-medium" name="level">
+                <label for="level-medium">Medium</label><br/>
+                <input type="radio" id="level-hard" name="level">
+                <label for="level-hard">Hard</label><br/>
+                <input type="submit" id="submit" value="graj">
+            </form>
+        </div>
     </div>
 </body>
 </html>
